@@ -110,8 +110,9 @@ class EepromController(object):
         for eeprom_model in eeprom_models:
             eeprom_data.extend(eeprom_model.to_eeprom_data())
 
-        self.__eeprom_file.write(eeprom_data)
-        self.__eeprom_file.activate()
+        if len(eeprom_data) > 0:
+            self.__eeprom_file.write(eeprom_data)
+            self.__eeprom_file.activate()
 
         # Write the extensions
         for eeprom_model in eeprom_models:
