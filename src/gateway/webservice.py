@@ -568,7 +568,7 @@ class WebInterface(object):
         manual, in case of manual a setpoint (0 to 5) can be provided.
 
         :param thermostat_id: The thermostat id
-        :type thermostat_id: Integer [0, 23]
+        :type thermostat_id: Integer [0, 31]
         :param automatic: Automatic mode (True) or Manual mode (False).
         :type automatic: Boolean
         :param setpoint: The current setpoint.
@@ -583,7 +583,7 @@ class WebInterface(object):
     def get_airco_status(self, token):
         """ Get the mode of the airco attached to a all thermostats.
 
-        :returns: dict with ASB0-ASB23.
+        :returns: dict with ASB0-ASB31.
         """
         self.check_token(token)
         return self.__wrap(lambda: self.__gateway_api.get_airco_status())
@@ -593,7 +593,7 @@ class WebInterface(object):
         """ Set the mode of the airco attached to a given thermostat.
 
         :param thermostat_id: The thermostat id.
-        :type thermostat_id: Integer [0, 23]
+        :type thermostat_id: Integer [0, 31]
         :param airco_on: Turns the airco on if True.
         :type airco_on: boolean.
 

@@ -948,15 +948,15 @@ class GatewayApi(object):
         """ Set the setpoint/mode for a certain thermostat.
 
         :param thermostat_id: The id of the thermostat.
-        :type thermostat_id: Integer [0, 23]
+        :type thermostat_id: Integer [0, 31]
         :param automatic: Automatic mode (True) or Manual mode (False)
         :type automatic: boolean
         :param setpoint: The current setpoint
         :type setpoint: Integer [0, 5]
         :returns: dict with 'status'
         """
-        if thermostat_id < 0 or thermostat_id > 23:
-            raise ValueError("thermostat_id not in [0, 23]: %d" % thermostat_id)
+        if thermostat_id < 0 or thermostat_id > 31:
+            raise ValueError("thermostat_id not in [0, 31]: %d" % thermostat_id)
 
         if setpoint < 0 or setpoint > 5:
             raise ValueError("setpoint not in [0, 5]: %d" % setpoint)
@@ -985,7 +985,7 @@ class GatewayApi(object):
     def get_airco_status(self):
         """ Get the mode of the airco attached to a all thermostats.
 
-        :returns: dict with ASB0-ASB23.
+        :returns: dict with ASB0-ASB31.
         """
         return self.__master_communicator.do_command(master_api.read_airco_status_bits())
 
@@ -993,14 +993,14 @@ class GatewayApi(object):
         """ Set the mode of the airco attached to a given thermostat.
 
         :param thermostat_id: The thermostat id.
-        :type thermostat_id: Integer [0, 23]
+        :type thermostat_id: Integer [0, 31]
         :param airco_on: Turns the airco on if True.
         :type airco_on: boolean.
 
         :returns: dict with 'status'.
         """
-        if thermostat_id < 0 or thermostat_id > 23:
-            raise ValueError("thermostat_id not in [0, 23]: %d" % thermostat_id)
+        if thermostat_id < 0 or thermostat_id > 31:
+            raise ValueError("thermostat_id not in [0, 31]: %d" % thermostat_id)
 
         modifier = 0 if airco_on else 100
 
