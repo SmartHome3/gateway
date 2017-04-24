@@ -179,6 +179,14 @@ class GatewayApi(object):
                 )
                 write = True
 
+            if eeprom_data[59] != chr(32):
+                LOGGER.info("Enabling 32 thermostats.")
+                self.__master_communicator.do_command(
+                    master_api.write_eeprom(),
+                    {"bank": 0, "address": 59, "data": chr(32)}
+                )
+                write = True
+
             if write:
                 self.__master_communicator.do_command(master_api.activate_eeprom(), {'eep': 0})
 
@@ -792,7 +800,7 @@ class GatewayApi(object):
     def __get_all_thermostats(self):
         """ Get basic information about all thermostats.
 
-        :returns: array containing 24 dicts (one for each thermostats) with the following keys: \
+        :returns: array containing 32 dicts (one for each thermostats) with the following keys: \
         'active', 'sensor_nr', 'output0_nr', 'output1_nr', 'name'.
         """
         thermostats = {'heating': [], 'cooling': []}
@@ -848,7 +856,7 @@ class GatewayApi(object):
 
         aircos = self.__master_communicator.do_command(master_api.read_airco_status_bits())
 
-        for thermostat_id in range(0, 24):
+        for thermostat_id in range(0, 32):
             if cached_thermostats[thermostat_id]['active'] is True:
                 thermostat = {'id': thermostat_id,
                               'act': thermostat_info['tmp%d' % thermostat_id].get_temperature(),
@@ -884,15 +892,15 @@ class GatewayApi(object):
 
     @staticmethod
     def __check_thermostat(thermostat):
-        """ :raises ValueError if thermostat not in range [0, 24]. """
-        if thermostat not in range(0, 25):
-            raise ValueError("Thermostat not in [0,24]: %d" % thermostat)
+        """ :raises ValueError if thermostat not in range [0, 32]. """
+        if thermostat not in range(0, 32):
+            raise ValueError("Thermostat not in [0,32]: %d" % thermostat)
 
     def set_current_setpoint(self, thermostat, temperature):
         """ Set the current setpoint of a thermostat.
 
         :param thermostat: The id of the thermostat to set
-        :type thermostat: Integer [0, 24]
+        :type thermostat: Integer [0, 32]
         :param temperature: The temperature to set in degrees Celcius
         :type temperature: float
         :returns: dict with 'thermostat', 'config' and 'temp'

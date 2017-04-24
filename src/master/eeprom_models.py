@@ -155,8 +155,8 @@ class ShutterGroupConfiguration(EepromModel):
 
 
 class ThermostatConfiguration(EepromModel):
-    """ Models a thermostat. The maximum number of thermostats is 24. """
-    id = EepromId(24)
+    """ Models a thermostat. The maximum number of thermostats is 32. """
+    id = EepromId(32)
     name = EepromString(16, lambda mid: (187 + (mid / 16), 16 * (mid % 16)))
     setp0 = EepromTemp(lambda mid: (142, 32 + mid))
     setp1 = EepromTemp(lambda mid: (142, 64 + mid))
@@ -246,8 +246,8 @@ class PumpGroupConfiguration(EepromModel):
 
 
 class CoolingConfiguration(EepromModel):
-    """ Models a thermostat in cooling mode. The maximum number of thermostats is 24. """
-    id = EepromId(24)
+    """ Models a thermostat in cooling mode. The maximum number of thermostats is 32. """
+    id = EepromId(32)
     name = EepromString(16, lambda mid: (204 + (mid / 16), 16 * (mid % 16)))
     setp0 = EepromTemp(lambda mid: (201, 32 + mid))
     setp1 = EepromTemp(lambda mid: (201, 64 + mid))
@@ -413,7 +413,7 @@ class SensorConfiguration(EepromModel):
 
 class ThermostatSetpointConfiguration(EepromModel):
     """ Models the setpoints for all of the thermostats. """
-    id = EepromId(24)
+    id = EepromId(32)
     automatic = EextBool()
     setpoint = EextByte()
 

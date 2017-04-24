@@ -255,13 +255,16 @@ def permanent_manual_thermostat_list():
     """ Read the permanent manual bytes, 1 per thermostat. """
     return MasterCommandSpec("pL",
         [Field.padding(13)],
-        [Field.byte('tm'), Field.byte('pmt0'), Field.byte('pmt1'), Field.byte('pmt2'),
-         Field.byte('pmt3'), Field.byte('pmt4'), Field.byte('pmt5'), Field.byte('pmt6'),
-         Field.byte('pmt7'), Field.byte('pmt8'), Field.byte('pmt9'), Field.byte('pmt10'),
-         Field.byte('pmt11'), Field.byte('pmt12'), Field.byte('pmt13'), Field.byte('pmt14'),
-         Field.byte('pmt15'), Field.byte('pmt16'), Field.byte('pmt17'), Field.byte('pmt18'),
-         Field.byte('pmt19'), Field.byte('pmt20'), Field.byte('pmt21'), Field.byte('pmt22'),
-         Field.byte('pmt23'), Field.crc(), Field.lit('\r\n')])
+        [Field.byte('tm'),
+         Field.byte('pmt0'), Field.byte('pmt1'), Field.byte('pmt2'), Field.byte('pmt3'),
+         Field.byte('pmt4'), Field.byte('pmt5'), Field.byte('pmt6'), Field.byte('pmt7'),
+         Field.byte('pmt8'), Field.byte('pmt9'), Field.byte('pmt10'), Field.byte('pmt11'),
+         Field.byte('pmt12'), Field.byte('pmt13'), Field.byte('pmt14'), Field.byte('pmt15'),
+         Field.byte('pmt16'), Field.byte('pmt17'), Field.byte('pmt18'), Field.byte('pmt19'),
+         Field.byte('pmt20'), Field.byte('pmt21'), Field.byte('pmt22'), Field.byte('pmt23'),
+         Field.byte('pmt24'), Field.byte('pmt25'), Field.byte('pmt26'), Field.byte('pmt27'),
+         Field.byte('pmt28'), Field.byte('pmt29'), Field.byte('pmt30'), Field.byte('pmt31'),
+         Field.crc(), Field.lit('\r\n')])
 
 def thermostat_list():
     """ Read the thermostat mode, the outside temperature, the temperature of each thermostat,
@@ -276,12 +279,16 @@ def thermostat_list():
          Field.svt('tmp12'), Field.svt('tmp13'), Field.svt('tmp14'), Field.svt('tmp15'),
          Field.svt('tmp16'), Field.svt('tmp17'), Field.svt('tmp18'), Field.svt('tmp19'),
          Field.svt('tmp20'), Field.svt('tmp21'), Field.svt('tmp22'), Field.svt('tmp23'),
+         Field.svt('tmp24'), Field.svt('tmp25'), Field.svt('tmp26'), Field.svt('tmp27'),
+         Field.svt('tmp28'), Field.svt('tmp29'), Field.svt('tmp30'), Field.svt('tmp31'),
          Field.svt('setp0'), Field.svt('setp1'), Field.svt('setp2'), Field.svt('setp3'),
          Field.svt('setp4'), Field.svt('setp5'), Field.svt('setp6'), Field.svt('setp7'),
          Field.svt('setp8'), Field.svt('setp9'), Field.svt('setp10'), Field.svt('setp11'),
          Field.svt('setp12'), Field.svt('setp13'), Field.svt('setp14'), Field.svt('setp15'),
          Field.svt('setp16'), Field.svt('setp17'), Field.svt('setp18'), Field.svt('setp19'),
          Field.svt('setp20'), Field.svt('setp21'), Field.svt('setp22'), Field.svt('setp23'),
+         Field.svt('setp24'), Field.svt('setp25'), Field.svt('setp26'), Field.svt('setp27'),
+         Field.svt('setp28'), Field.svt('setp29'), Field.svt('setp30'), Field.svt('setp31'),
          Field.crc(), Field.lit('\r\n')])
 
 def thermostat_mode_list():
@@ -294,6 +301,8 @@ def thermostat_mode_list():
          Field.byte('mode12'), Field.byte('mode13'), Field.byte('mode14'), Field.byte('mode15'),
          Field.byte('mode16'), Field.byte('mode17'), Field.byte('mode18'), Field.byte('mode19'),
          Field.byte('mode20'), Field.byte('mode21'), Field.byte('mode22'), Field.byte('mode23'),
+         Field.byte('mode24'), Field.byte('mode25'), Field.byte('mode26'), Field.byte('mode27'),
+         Field.byte('mode28'), Field.byte('mode29'), Field.byte('mode30'), Field.byte('mode31'),
          Field.crc(), Field.lit('\r\n')])
 
 def sensor_humidity_list():
@@ -394,6 +403,8 @@ def write_airco_status_bit():
          Field.byte("ASB12"), Field.byte("ASB13"), Field.byte("ASB14"), Field.byte("ASB15"),
          Field.byte("ASB16"), Field.byte("ASB17"), Field.byte("ASB18"), Field.byte("ASB19"),
          Field.byte("ASB20"), Field.byte("ASB21"), Field.byte("ASB22"), Field.byte("ASB23"),
+         Field.byte("ASB24"), Field.byte("ASB25"), Field.byte("ASB26"), Field.byte("ASB27"),
+         Field.byte("ASB28"), Field.byte("ASB29"), Field.byte("ASB30"), Field.byte("ASB31"),
          Field.lit("\r\n")])
 
 def read_airco_status_bits():
@@ -406,6 +417,8 @@ def read_airco_status_bits():
          Field.byte("ASB12"), Field.byte("ASB13"), Field.byte("ASB14"), Field.byte("ASB15"),
          Field.byte("ASB16"), Field.byte("ASB17"), Field.byte("ASB18"), Field.byte("ASB19"),
          Field.byte("ASB20"), Field.byte("ASB21"), Field.byte("ASB22"), Field.byte("ASB23"),
+         Field.byte("ASB24"), Field.byte("ASB25"), Field.byte("ASB26"), Field.byte("ASB27"),
+         Field.byte("ASB28"), Field.byte("ASB29"), Field.byte("ASB30"), Field.byte("ASB31"),
          Field.lit("\r\n")])
 
 def to_cli_mode():

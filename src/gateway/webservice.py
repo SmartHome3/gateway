@@ -515,7 +515,7 @@ class WebInterface(object):
         """ Set the current setpoint of a thermostat.
 
         :param thermostat: The id of the thermostat to set
-        :type thermostat: Integer [0, 24]
+        :type thermostat: Integer [0, 32]
         :param temperature: The temperature to set in degrees Celcius
         :type temperature: float
         :return: 'status': 'OK'.
@@ -555,7 +555,7 @@ class WebInterface(object):
                                                boolean(cooling_on))
 
         if automatic is not None and setpoint is not None:
-            for thermostat_id in range(24):
+            for thermostat_id in range(32):
                 self.__gateway_api.set_per_thermostat_mode(thermostat_id,
                                                            boolean(automatic),
                                                            int(setpoint))
